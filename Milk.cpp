@@ -9,10 +9,11 @@ Milk::Milk(string& name, string produceDate, int weight, int price, string shelf
 
 string Milk::Info() const {
     string out;
-
+    string p;
     out = ProductFood::Info() +
           "Fat: " + to_string(getFat()) +
           "Package Type: " + getPackageType();
 
     return out;
 }
+
