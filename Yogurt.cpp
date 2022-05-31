@@ -1,11 +1,22 @@
 #include "Yogurt.h"
-
 #include <string>
 
 using namespace std;
 
-Yogurt::Yogurt() : fat(0), inside("default") {}
-Yogurt::Yogurt(string& name, string produceDate, int weight, int price, string shelfLife, int amountCalories, int fat, string inside) : ProductFood(name, produceDate, weight, price, shelfLife, amountCalories), fat(fat), inside(inside) {}
+Yogurt::Yogurt() :
+               fat(0),
+               inside("default") {}
+Yogurt::Yogurt(const string& nameYogurt,
+               int day, int month, int year,
+               int weight,
+               int price,
+               int dayShelfLifeYogurt, int monthShelfLifeYogurt, int yearShelfLifeYogurt,
+               int amountCalories,
+               int fat,
+               string inside) :
+               ProductFood(nameYogurt, day, month, year, weight, price, dayShelfLifeYogurt, monthShelfLifeYogurt, yearShelfLifeYogurt, amountCalories),
+               fat(fat),
+               inside(inside) {}
 
 string Yogurt::Info() const {
     string out;

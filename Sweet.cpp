@@ -4,8 +4,20 @@
 
 using namespace std;
 
-Sweet::Sweet() : sweetType("default"), packageType("default") {}
-Sweet::Sweet(string &name, string produceDate, int weight, int price, string shelfLife, int amountCalories, string sweetType, string packageType) : ProductFood(name, produceDate, weight, price, shelfLife, amountCalories), sweetType(sweetType), packageType(packageType) {}
+Sweet::Sweet() :
+             sweetType("default"),
+             packageType("default") {}
+Sweet::Sweet(const string &nameSweet,
+             int day, int month, int year,
+             int weight,
+             int price,
+             int dayShelfLifeSweet, int monthShelfLifeSweet, int yearShelfLifeSweet,
+             int amountCalories,
+             string sweetType,
+             string packageType) :
+             ProductFood(nameSweet, day, month, year, weight, price, dayShelfLifeSweet, monthShelfLifeSweet, yearShelfLifeSweet, amountCalories),
+             sweetType(sweetType),
+             packageType(packageType) {}
 
 string Sweet::Info() const {
     string out;

@@ -4,18 +4,18 @@
 #include "Product.h"
 #include "ProductFood.h"
 
-class Yogurt : ProductFood{
+class Yogurt : public ProductFood{
 private:
     int fat;
     string inside;
 public:
     Yogurt();
     Yogurt(
-            string& name,
-            string produceDate,
+            const string& nameYogurt,
+            int day, int month, int year,
             int weight,
             int price,
-            string shelfLife,
+            int dayShelfLifeYogurt, int monthShelfLifeYogurt, int yearShelfLifeYogurt,
             int amountCalories,
             int fat,
             string inside
@@ -25,6 +25,7 @@ public:
     string getInside() const {return inside;}
 
     string Info() const override;
+    string Type() const override{return "Yogurt";}
 
 };
 

@@ -5,21 +5,27 @@
 
 using namespace std;
 
+struct Date{
+    int day, month, year;
+};
+
 class Product {
 private:
-    string name, produceDate;
+    string name;
     int weight, price;
+protected:
+    Date produceDate;
 public:
     Product();
     Product(
-            string& name,
-            string produceDate,
+            const string& name,
+            int dayProduceDate, int monthProduceDate, int yearProduceDate,
             int weight,
             int price
             );
 
     string getName() const {return name;}
-    string getProduceDate() const {return produceDate;}
+    Date getProduceDate() const {return produceDate;}
     int getWeight() const {return weight;}
     int getPrice() const {return price;}
 

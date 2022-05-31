@@ -7,25 +7,27 @@ using namespace std;
 
 class ProductFood : public Product {
 protected:
-    string shelfLife;
+    Date shelfLife;
     int amountCalories;
 public:
     ProductFood();
     ProductFood(
-            string& name,
-            string& produceDate,
+            const string& name,
+            int day, int month, int year,
             int weight,
             int price,
-            string& shelfLife,
+            int dayShelfLife, int monthShelfLife, int yearShelfLife,
             int amountCalories
             );
 
+    Date getShelfLife() const {return shelfLife;}
+    int getAmountCalories() const {return amountCalories;}
+
+    virtual string Type() const = 0;
+
     string Info() const override;
 
-    string getShelfLife() {return shelfLife;}
-    int getAmountCalories() {return amountCalories;}
 
-    virtual bool ExpiredShelfLife();
 };
 
 
