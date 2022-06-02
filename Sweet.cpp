@@ -1,6 +1,7 @@
 #include "Sweet.h"
 
 #include <string>
+#include <stdexcept>
 
 using namespace std;
 
@@ -8,16 +9,21 @@ Sweet::Sweet() :
              sweetType("default"),
              packageType("default") {}
 Sweet::Sweet(const string &nameSweet,
-             int day, int month, int year,
+             const string& produceDateSweet,
              int weight,
              int price,
-             int dayShelfLifeSweet, int monthShelfLifeSweet, int yearShelfLifeSweet,
+             const string& shelfLifeSweet,
              int amountCalories,
-             string sweetType,
-             string packageType) :
-             ProductFood(nameSweet, day, month, year, weight, price, dayShelfLifeSweet, monthShelfLifeSweet, yearShelfLifeSweet, amountCalories),
+             const string& sweetType,
+             const string& packageType) :
+             ProductFood(nameSweet, produceDateSweet, weight, price, shelfLifeSweet, amountCalories),
              sweetType(sweetType),
-             packageType(packageType) {}
+             packageType(packageType) {
+    if(weight < 0){throw invalid_argument("You entered a sweet weight less than 0");}
+    if(price < 0){throw invalid_argument("You have entered a price for sweet less than 0");}
+    if(amountCalories < 0){throw invalid_argument("You entered the number of calories in sweet is less than 0");}
+
+}
 
 string Sweet::Info() const {
     string out;

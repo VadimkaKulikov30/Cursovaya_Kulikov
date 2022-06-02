@@ -15,13 +15,13 @@ public:
     Milk();
     Milk(
           const string& nameMilk,
-          int day, int month, int year,
+          const string& produceDate,
           int weight,
           int price,
-          int dayShelfLifeMilk, int monthShelfLifeMilk, int yearShelfLifeMilk,
+          const string& shelfLife,
           int amountCalories,
           int fat,
-          string packageType
+          const string& packageType
           );
 
     int getFat() const {return fat;}

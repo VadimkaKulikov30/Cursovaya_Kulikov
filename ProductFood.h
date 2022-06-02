@@ -7,20 +7,20 @@ using namespace std;
 
 class ProductFood : public Product {
 protected:
-    Date shelfLife;
+    string shelfLife;
     int amountCalories;
 public:
     ProductFood();
     ProductFood(
             const string& name,
-            int day, int month, int year,
+            const string& produceDate,
             int weight,
             int price,
-            int dayShelfLife, int monthShelfLife, int yearShelfLife,
+            const string& shelfLife,
             int amountCalories
             );
 
-    Date getShelfLife() const {return shelfLife;}
+    string getShelfLife() const {return shelfLife;}
     int getAmountCalories() const {return amountCalories;}
 
     virtual string Type() const = 0;

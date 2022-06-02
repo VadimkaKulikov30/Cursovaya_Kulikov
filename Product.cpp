@@ -1,28 +1,30 @@
 #include "Product.h"
-
+#include <stdexcept>
 using namespace std;
 
 Product::Product() :
                  name("Default"),
-                 produceDate({00,00,0000}),
+                 produceDate("00/00/0000"),
                  weight(0),
                  price(0) {}
 Product::Product(const string& name,
-                 int day, int month, int year,
+                 const string& produceDate,
                  int weight,
                  int price) :
                  name(name),
-                 produceDate({day, month, year}),
+                 produceDate(produceDate),
                  weight(weight),
-                 price(price) {}
+                 price(price) {
+
+}
 
 string Product::Info() const {
     string out;
 
-    out = "Name " + getName() +
-          "Produce Date" + to_string(getProduceDate().day) + "/" + to_string(getProduceDate().month) + "/" + to_string(getProduceDate().year) +
-          "Weight " + to_string(getWeight()) +
-          "Price " + to_string(getPrice());
+    out = "Name: " + getName() + "." +
+          " Produce date: " + getProduceDate() + "." +
+          " Weight: " + to_string(getWeight()) + "." +
+          " Price: " + to_string(getPrice()) + ".";
 
     return out;
 }

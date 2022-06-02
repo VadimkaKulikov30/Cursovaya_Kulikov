@@ -15,13 +15,13 @@ public:
     Sweet();
     Sweet(
            const string& nameSweet,
-           int day, int month, int year,
+           const string& produceDate,
            int weight,
            int price,
-           int dayShelfLifeSweet, int monthShelfLifeSweet, int yearShelfLifeSweet,
+           const string& shelfLife,
            int amountCalories,
-           string sweetType,
-           string packageType
+           const string& sweetType,
+           const string& packageType
            );
 
     string getSweetType() const {return sweetType;}

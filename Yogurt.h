@@ -12,13 +12,13 @@ public:
     Yogurt();
     Yogurt(
             const string& nameYogurt,
-            int day, int month, int year,
+            const string& produceDate,
             int weight,
             int price,
-            int dayShelfLifeYogurt, int monthShelfLifeYogurt, int yearShelfLifeYogurt,
+            const string& shelfLife,
             int amountCalories,
             int fat,
-            string inside
+            const string& inside
             );
 
     int getFat() const {return fat;}
