@@ -12,8 +12,8 @@ private:
 public:
     Product();
     Product(
-            const string& name,
-            const string& produceDate,
+            string name,
+            string produceDate,
             int weight,
             int price
             );

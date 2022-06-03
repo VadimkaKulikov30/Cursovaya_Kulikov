@@ -21,7 +21,7 @@ public:
           const string& shelfLife,
           int amountCalories,
           int fat,
-          const string& packageType
+          string  packageType
           );
 
     int getFat() const {return fat;}

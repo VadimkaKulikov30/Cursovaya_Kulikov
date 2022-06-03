@@ -1,6 +1,7 @@
 #include "Milk.h"
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 using namespace std;
 
@@ -14,10 +15,10 @@ Milk::Milk(const string& nameMilk,
            const string& shelfLifeMilk,
            int amountCalories,
            int fat,
-           const string& packageType) :
+           string packageType) :
            ProductFood(nameMilk, produceDateMilk, weight, price, shelfLifeMilk, amountCalories),
            fat(fat),
-           packageType(packageType) {
+           packageType(std::move(packageType)) {
     if(weight < 0){throw invalid_argument("You entered a milk weight less than 0");}
     if(price < 0){throw invalid_argument("You have entered a price for milk less than 0");}
     if(amountCalories < 0){throw invalid_argument("You entered the number of calories in milk is less than 0");}
@@ -31,8 +32,8 @@ string Milk::Info() const {
     string out;
 
     out = ProductFood::Info() +
-          "Fat: " + to_string(getFat()) + "%" +
-          "Package Type: " + getPackageType();
+          " Fat: " + to_string(getFat()) + "%." +
+          " Package Type: " + getPackageType();
 
     return out;
 }

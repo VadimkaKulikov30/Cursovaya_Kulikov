@@ -13,24 +13,21 @@ private:
 public:
     Shelf();
 
+    int convertDate(const string& date);
     int getCapacity() const {return capacity;}
-    int getAmountMoney() {return amountMoney;}
+    int getAmountMoney() const {return amountMoney;}
 
-    //void setCapacity(int gain) {capacity = gain;}
     void sumPrice(int gain) {amountMoney += gain;}
     void printProductFood();
     void sortProductFood();
     void addProductFood(const ProductFood* i, int quantity);
     void loseShelfLifeProductFood(const string& date);
 
+    void dateComparison(const string& ProduceDate, const string& ShelfLife);
 
-    const vector<const ProductFood*> getAmountProduct() const {return vecAmountProduct;}
-    const ProductFood* takeProduct(const string& name);
-
-
+    const ProductFood* buyProduct(const string& name);
 
 };
 
-int convertDate(const string& date);
 
 #endif //CURSOVAYA_SHELF_H

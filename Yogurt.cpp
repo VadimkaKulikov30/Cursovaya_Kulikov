@@ -1,6 +1,7 @@
 #include "Yogurt.h"
 #include <string>
 #include <stdexcept>
+#include <utility>
 
 using namespace std;
 
@@ -14,10 +15,10 @@ Yogurt::Yogurt(const string& nameYogurt,
                const string& shelfLifeYogurt,
                int amountCalories,
                int fat,
-               const string& inside) :
+               string inside) :
                ProductFood(nameYogurt, produceDateYogurt, weight, price, shelfLifeYogurt, amountCalories),
                fat(fat),
-               inside(inside) {
+               inside(std::move(inside)) {
 
     if(weight < 0){throw invalid_argument("You entered a yogurt weight less than 0");}
     if(price < 0){throw invalid_argument("You have entered a price for yogurt less than 0");}
@@ -31,7 +32,7 @@ string Yogurt::Info() const {
     string out;
 
     out = ProductFood::Info() +
-          " Fat: " + to_string(getFat()) + "." +
+          " Fat: " + to_string(getFat()) + "%." +
           " Inside: " + getInside() + ".";
 
     return out;

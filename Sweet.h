@@ -20,8 +20,8 @@ public:
            int price,
            const string& shelfLife,
            int amountCalories,
-           const string& sweetType,
-           const string& packageType
+           string sweetType,
+           string packageType
            );
 
     string getSweetType() const {return sweetType;}

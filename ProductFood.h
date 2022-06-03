@@ -16,7 +16,7 @@ public:
             const string& produceDate,
             int weight,
             int price,
-            const string& shelfLife,
+            string  shelfLife,
             int amountCalories
             );
 

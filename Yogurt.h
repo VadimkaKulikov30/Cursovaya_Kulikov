@@ -18,7 +18,7 @@ public:
             const string& shelfLife,
             int amountCalories,
             int fat,
-            const string& inside
+            string inside
             );
 
     int getFat() const {return fat;}
