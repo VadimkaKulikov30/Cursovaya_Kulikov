@@ -1,6 +1,6 @@
 #include "ProductFood.h"
+
 #include <string>
-#include <utility>
 
 using namespace std;
 
@@ -14,9 +14,8 @@ ProductFood::ProductFood(const string& name,
                          string shelfLife,
                          int amountCalories) :
                          Product(name, produceDate, weight, price),
-                         shelfLife(std::move(shelfLife)),
+                         shelfLife(move(shelfLife)),
                          amountCalories(amountCalories) {}
-
 
 string ProductFood::Info() const {
     string out;

@@ -6,11 +6,10 @@
 #include "Shelf.h"
 
 int main() {
-    string name, inside, packageType;
-    int weight, fat, price, amountCalories, amount, gain;
-    string produceDate, todayDate, shelfLife, sweetType;
-    int selection;
+    int weight, fat, price, amountCalories, amount, gain, selection;
+    string name, inside, packageType, produceDate, todayDate, shelfLife, sweetType;
     bool ex = false;
+
     Shelf shelf;
     Yogurt *yogurt;
     Milk *milk;
@@ -33,7 +32,7 @@ int main() {
                 "| 6. Buying products.                     |\n"
                 "| 7. Revenue of products sold.            |\n"
                 "| 8. Printing products on the shelf.      |\n"
-                "| 9. Checking product for integrity       |\n"
+                "| 9. Checking product for integrity.      |\n"
                 "|=========================================|\n"
                 "| 10. Info Shelf.                         |\n"
                 "| 11. Exit the program.                   |\n"
@@ -61,14 +60,17 @@ int main() {
                             cout << "Enter fat:\n"; cin >> fat;
                             cout << "The inside of yogurt can be for example pineapple, mango, apple and other fruits.\n";
                             cout << "Enter the inside of the yogurt:\n"; cin >> inside;
-                            cout << "Seats on the shelf now: " << shelf.getOneLessCapacity() << "\n";
+                            cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
                             cout << "Enter amount of product:\n"; cin >> amount;
 
-                            yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat,
-                                                inside);
+                            yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
                             shelf.dateComparison(produceDate, shelfLife);
                             shelf.addProductFood(yogurt, amount);
-                            cout << " " << amount << " yogurts have been added to the shelf.\n"; cout << endl;
+                            if(amount > 1){
+                                cout << " " << amount << " yogurts have been added to the shelf.\n";
+                            } else {
+                                cout << " " << amount << " yogurt have been added to the shelf.\n";
+                            }
                             break;
                         } catch (exception &ex) {
                             cout << ex.what() << endl;
@@ -93,11 +95,10 @@ int main() {
                             cout << "Milk is stored in a package.\n"
                                     "For example cardboard, bottle, glass and others.\n";
                             cout << "Enter package type:\n"; cin >> packageType;
-                            cout << "Seats on the shelf now: " << shelf.getOneLessCapacity() << "\n";
+                            cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
                             cout << "Enter amount of product\n"; cin >> amount;
 
-                            milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat,
-                                            packageType);
+                            milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
                             shelf.dateComparison(produceDate, shelfLife);
                             shelf.addProductFood(milk, amount);
                             cout << " " << amount << " milk " << packageType << " have been added to the shelf.\n";
@@ -127,13 +128,13 @@ int main() {
                         cout << "Sweet is stored in a package.\n"
                                 "For example cardboard, foil, box and others\n";
                         cout << "Enter package type:\n"; cin >> packageType;
-                        cout << "Seats on the shelf now: " << shelf.getOneLessCapacity() << "\n";
+                        cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
                         cout << "Enter amount of product\n"; cin >> amount;
 
                         sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                         shelf.dateComparison(produceDate, shelfLife);
                         shelf.addProductFood(sweet, amount);
-                        cout << " " << amount << " " << name << " in a " << packageType << " added to the shelf.\n";
+                        cout << " " << amount << " " << sweetType << " in a " << packageType << " added to the shelf.\n";
                         break;
 
                     } catch (exception& ex){
@@ -143,8 +144,12 @@ int main() {
                 case 4:
                     cout << "Check the shelf life of the products added to the shelf.\n";
                     cout << "Enter today date:\n"; cin >> todayDate;
-                    shelf.loseShelfLifeProductFood(todayDate); cout << endl;
-
+                    shelf.loseShelfLifeProductFood(todayDate);
+                    break;
+                case 5:
+                    cout << "This sub-item sorts the products on the shelf.\n";
+                    shelf.sortProductFood();
+                    cout << " Products sorted.\n";
                     break;
                 case 6:
                     cout << "In this subsection, you can buy a product that is on the shelf\n";
@@ -156,7 +161,8 @@ int main() {
                     cout << " You have sold products worth " << shelf.getAmountMoney() << " $\n";
                     break;
                 case 8:
-                    cout << " Products on the shelf:\n"; shelf.printProductFood();
+                    cout << " Products on the shelf:\n";
+                    shelf.printProductFood();
                     break;
                 case 9:
                     cout << "In this subsection you can check the products for integrity.\n";
@@ -166,25 +172,29 @@ int main() {
                     break;
                 case 10:
                     do{
-                        cout << "You can independently set the number of places on the shelf,\n"
-                                "with a margin of one place, by pressing - 1.\n"
-                                "You can view the default number of shelf slots by pressing - 2.\n"
-                                "You can exit by pressing - 3.\n";
+                        cout << "You can increase the number of shelf spaces by pressing - 1.\n"
+                                "You can decrease the number of shelf spaces by pressing - 2.\n"
+                                "You can view the default number of shelf slots by pressing - 3.\n"
+                                "You can exit by pressing - 4.\n";
                         cin >> selection;
                         switch (selection) {
                             case 1:
                                 cout << "Enter gain: " << "\n"; cin >> gain;
-                                shelf.setCapacity(gain);
+                                shelf.setCapacityIncrease(gain);
                                 break;
                             case 2:
-                                cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
+                                cout << "Enter gain: " << "\n"; cin >> gain;
+                                shelf.setCapacityReduce(gain);
                                 break;
                             case 3:
+                                cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
+                                break;
+                            case 4:
                                 cout << "\nYou left case 9.\n";
                                 ex = true;
+                                break;
                             default:
                                 cout << "\n";
-
                         }
                     } while(!ex);
                     break;

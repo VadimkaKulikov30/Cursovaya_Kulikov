@@ -3,6 +3,7 @@
 
 #include "Product.h"
 #include "ProductFood.h"
+
 #include <string>
 
 using namespace std;
@@ -13,22 +14,19 @@ private:
     string packageType;
 public:
     Milk();
-    Milk(
-          const string& nameMilk,
-          const string& produceDate,
-          int weight,
-          int price,
-          const string& shelfLife,
-          int amountCalories,
-          int fat,
-          string  packageType
-          );
+    Milk(const string& nameMilk,
+         const string& produceDate,
+         int weight,
+         int price,
+         const string& shelfLife,
+         int amountCalories,
+         int fat,
+         string packageType);
 
     int getFat() const {return fat;}
     string getPackageType() const {return packageType;}
 
     string Info() const override;
-    string Type() const override{return "Milk";}
 };
 
 

@@ -11,12 +11,10 @@ private:
     int weight, price;
 public:
     Product();
-    Product(
-            string name,
+    Product(string name,
             string produceDate,
             int weight,
-            int price
-            );
+            int price);
 
     string getName() const {return name;}
     string getProduceDate() const {return produceDate;}

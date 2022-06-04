@@ -4,15 +4,16 @@ using namespace std;
 
 Product::Product() :
                  name("Default"),
-                 produceDate("00/00/0000"),
+                 produceDate("DD/MM/YYYY"),
                  weight(0),
                  price(0) {}
+
 Product::Product(string name,
                  string produceDate,
                  int weight,
                  int price) :
-                 name(std::move(name)),
-                 produceDate(std::move(produceDate)),
+                 name(move(name)),
+                 produceDate(move(produceDate)),
                  weight(weight),
                  price(price) {}
 

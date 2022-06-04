@@ -11,19 +11,15 @@ protected:
     int amountCalories;
 public:
     ProductFood();
-    ProductFood(
-            const string& name,
-            const string& produceDate,
-            int weight,
-            int price,
-            string  shelfLife,
-            int amountCalories
-            );
+    ProductFood(const string& name,
+                const string& produceDate,
+                int weight,
+                int price,
+                string shelfLife,
+                int amountCalories);
 
     string getShelfLife() const {return shelfLife;}
     int getAmountCalories() const {return amountCalories;}
-
-    virtual string Type() const = 0;
 
     string Info() const override;
 

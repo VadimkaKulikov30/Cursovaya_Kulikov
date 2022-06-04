@@ -10,22 +10,19 @@ private:
     string inside;
 public:
     Yogurt();
-    Yogurt(
-            const string& nameYogurt,
-            const string& produceDate,
-            int weight,
-            int price,
-            const string& shelfLife,
-            int amountCalories,
-            int fat,
-            string inside
-            );
+    Yogurt(const string& nameYogurt,
+           const string& produceDate,
+           int weight,
+           int price,
+           const string& shelfLife,
+           int amountCalories,
+           int fat,
+           string inside);
 
     int getFat() const {return fat;}
     string getInside() const {return inside;}
 
     string Info() const override;
-    string Type() const override{return "Yogurt";}
 
 };
 

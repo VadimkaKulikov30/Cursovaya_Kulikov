@@ -1,7 +1,8 @@
+#include "Shelf.h"
+
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
-#include "Shelf.h"
 
 using namespace std;
 
@@ -17,56 +18,9 @@ int Shelf::convertDate(const string& date){
 void Shelf::dateComparison(const string &ProduceDate, const string &ShelfLife) {
     int produceDate = convertDate(ProduceDate);
     int shelfLife = convertDate(ShelfLife);
-    if(produceDate > shelfLife){
+    if(produceDate > shelfLife) {
         throw invalid_argument("You entered a production date less than the shelf life. This can't be");
     }
-}
-
-void Shelf::loseShelfLifeProductFood(const string& date) {
-    int todayDate = convertDate(date);
-    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
-        const ProductFood * productFood = *product;
-        int shelfDate = convertDate(productFood->getShelfLife());
-        if (todayDate > shelfDate){
-            product = vecAmountProduct.erase(product); capacity++;
-        }
-        else {
-            product++;
-        }
-    }
-}
-
-const ProductFood* Shelf::checkIntegrity(const string &name) {
-    random_device rd;
-    default_random_engine generator(rd());
-    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
-        const ProductFood * productFood = *product;
-
-            if(productFood->getName() == name){
-                bernoulli_distribution distribution(0.5);
-                if(distribution(generator)){
-                    product++;
-                }
-                else {
-                    vecAmountProduct.erase(product); capacity++;
-                }
-            }
-            else{product++;}
-        }
-    return nullptr;
-}
-
-const ProductFood* Shelf::buyProduct(const string &name) {
-    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end(); product++){
-        const ProductFood * productFood = *product;
-        if(productFood->getName() == name){
-            vecAmountProduct.erase(product);
-            sumPrice(productFood->getPrice());
-            capacity++;
-            return productFood;
-        }
-    }
-    return nullptr;
 }
 
 void Shelf::addProductFood(const ProductFood* product, int count) {
@@ -81,11 +35,71 @@ void Shelf::addProductFood(const ProductFood* product, int count) {
     }
 }
 
+//Checking the product for shelf life.
+void Shelf::loseShelfLifeProductFood(const string& date) {
+    int todayDate = convertDate(date);
+    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
+        const ProductFood * productFood = *product;
+        int shelfDate = convertDate(productFood->getShelfLife());
+        if (todayDate > shelfDate){
+            product = vecAmountProduct.erase(product); capacity++;
+        }
+        else {
+            product++;
+        }
+    }
+}
+
+//Sorting products on the shelf.
+bool sortComparator(const ProductFood * productFood1, const ProductFood * productFood2){
+    return (productFood1->getPrice() < productFood2->getPrice());
+}
+
+void Shelf::sortProductFood() {
+    sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparator);
+}
+
+//Buying products.
+const ProductFood* Shelf::buyProduct(const string &name) {
+    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end(); product++){
+        const ProductFood * productFood = *product;
+        if(productFood->getName() == name){
+            vecAmountProduct.erase(product);
+            sumPrice(productFood->getPrice());
+            capacity++;
+            return productFood;
+        }
+    }
+    return nullptr;
+}
+
+//Printing products on the shelf.
 void Shelf::printProductFood() {
     for(auto i : vecAmountProduct){
         cout << i->Info() << endl;
     }
 }
+
+//Checking product for integrity.
+const ProductFood* Shelf::checkIntegrity(const string &name) {
+    random_device rd;
+    default_random_engine generator(rd());
+    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
+        const ProductFood * productFood = *product;
+            if(productFood->getName() == name){
+                bernoulli_distribution distribution(0.5);
+                if(distribution(generator)){
+                    product++;
+                } else {
+                    vecAmountProduct.erase(product); capacity++;
+                }
+            } else {
+                product++;
+            }
+        }
+    return nullptr;
+}
+
 
 
 
