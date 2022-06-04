@@ -30,8 +30,8 @@ string Sweet::Info() const {
     string out;
 
     out = ProductFood::Info() +
-          "Sweet type: " + getSweetType() +
-          "Package type: " + getPackageType();
+          " Type " + getSweetType() +
+          " Package " + getPackageType();
 
     return out;
 }

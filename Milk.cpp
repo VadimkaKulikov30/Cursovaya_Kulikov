@@ -32,8 +32,8 @@ string Milk::Info() const {
     string out;
 
     out = ProductFood::Info() +
-          " Fat: " + to_string(getFat()) + "%." +
-          " Package Type: " + getPackageType();
+          " Fat: " + to_string(getFat()) + "%" +
+          " Package " + getPackageType();
 
     return out;
 }

@@ -18,7 +18,7 @@ Yogurt::Yogurt(const string& nameYogurt,
                string inside) :
                ProductFood(nameYogurt, produceDateYogurt, weight, price, shelfLifeYogurt, amountCalories),
                fat(fat),
-               inside(std::move(inside)) {
+               inside(move(inside)) {
 
     if(weight < 0){throw invalid_argument("You entered a yogurt weight less than 0");}
     if(price < 0){throw invalid_argument("You have entered a price for yogurt less than 0");}
@@ -32,8 +32,8 @@ string Yogurt::Info() const {
     string out;
 
     out = ProductFood::Info() +
-          " Fat: " + to_string(getFat()) + "%." +
-          " Inside: " + getInside() + ".";
+          " Fat " + to_string(getFat()) + "%" +
+          " Inside " + getInside();
 
     return out;
 }

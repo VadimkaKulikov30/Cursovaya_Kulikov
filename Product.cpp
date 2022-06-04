@@ -1,6 +1,5 @@
 #include "Product.h"
-#include <stdexcept>
-#include <utility>
+
 using namespace std;
 
 Product::Product() :
@@ -15,17 +14,15 @@ Product::Product(string name,
                  name(std::move(name)),
                  produceDate(std::move(produceDate)),
                  weight(weight),
-                 price(price) {
-
-}
+                 price(price) {}
 
 string Product::Info() const {
     string out;
 
     out = "Name: " + getName() + "." +
-          " Produce date: " + getProduceDate() + "." +
-          " Weight: " + to_string(getWeight()) + " grams." +
-          " Price: " + to_string(getPrice()) + "$.";
+          " Produced " + getProduceDate() +
+          " Weight: " + to_string(getWeight()) + "(g)" +
+          " Price " + to_string(getPrice()) + "$";
 
     return out;
 }

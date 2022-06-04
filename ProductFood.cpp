@@ -22,8 +22,8 @@ string ProductFood::Info() const {
     string out;
 
     out = Product::Info() +
-          " Shelf life: " + getShelfLife() + "." +
-          " Amount calories: " + to_string(getAmountCalories()) + " kcal.";
+          " Expire " + getShelfLife() +
+          " Calories: " + to_string(getAmountCalories()) + " kcal";
 
     return out;
 }
