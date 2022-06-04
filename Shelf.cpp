@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Shelf::Shelf() {}
+Shelf::Shelf() : capacity(5) {}
 
 int Shelf::convertDate(const string& date){
     int day, month, year;
@@ -28,12 +28,32 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
         const ProductFood * productFood = *product;
         int shelfDate = convertDate(productFood->getShelfLife());
         if (todayDate > shelfDate){
-            product = vecAmountProduct.erase(product);
+            product = vecAmountProduct.erase(product); capacity++;
         }
         else {
             product++;
         }
     }
+}
+
+const ProductFood* Shelf::checkIntegrity(const string &name) {
+    random_device rd;
+    default_random_engine generator(rd());
+    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
+        const ProductFood * productFood = *product;
+
+            if(productFood->getName() == name){
+                bernoulli_distribution distribution(0.5);
+                if(distribution(generator)){
+                    product++;
+                }
+                else {
+                    vecAmountProduct.erase(product); capacity++;
+                }
+            }
+            else{product++;}
+        }
+    return nullptr;
 }
 
 const ProductFood* Shelf::buyProduct(const string &name) {
@@ -42,6 +62,7 @@ const ProductFood* Shelf::buyProduct(const string &name) {
         if(productFood->getName() == name){
             vecAmountProduct.erase(product);
             sumPrice(productFood->getPrice());
+            capacity++;
             return productFood;
         }
     }
@@ -51,14 +72,11 @@ const ProductFood* Shelf::buyProduct(const string &name) {
 void Shelf::addProductFood(const ProductFood* product, int count) {
     if(count < 0) {
         throw invalid_argument("You have entered a amount of products less than 0. This cannot be.");
+    } else if (count > getCapacity()){
+        throw invalid_argument("Initially, there is less space on the shelf than you wanted to add.");
     } else {
         while (count > 0) {
-            if(vecAmountProduct.size() >= getCapacity()) {
-                throw invalid_argument("dis");
-            }
-            else {
-                vecAmountProduct.push_back(product); count--;
-            }
+            vecAmountProduct.push_back(product); count--; capacity--;
         }
     }
 }
