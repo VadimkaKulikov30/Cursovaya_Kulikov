@@ -80,7 +80,7 @@ const ProductFood* Shelf::checkIntegrity(const string &name) {
     for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
         const ProductFood * productFood = *product;
             if(productFood->getName() == name){
-                bernoulli_distribution distribution(0.5);
+                bernoulli_distribution distribution(0.8);
                 if(distribution(generator)){
                     product++;
                 } else {
