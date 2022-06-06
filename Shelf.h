@@ -28,7 +28,8 @@ public:
 
     void loseShelfLifeProductFood(const string& date);
     void printProductFood();
-    void sortProductFood();
+    void sortProductPriceAscending();
+    void sortProductPriceDescending();
     void addProductFood(const ProductFood* product, int quantity);
     void dateComparison(const string& ProduceDate, const string& ShelfLife);
 

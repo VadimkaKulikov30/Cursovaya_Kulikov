@@ -1,12 +1,8 @@
 #include "ProductFood.h"
 
-#include <string>
-
-using namespace std;
-
 ProductFood::ProductFood() :
-                         shelfLife("00/00/0000"),
-                         amountCalories(0) {}
+                         shelfLife("DD/MM/YYYY"),
+                         amountCalories(500) {}
 ProductFood::ProductFood(const string& name,
                          const string& produceDate,
                          int weight,

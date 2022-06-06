@@ -1,7 +1,5 @@
 #include "Product.h"
 
-using namespace std;
-
 Product::Product() :
                  name("Default"),
                  produceDate("DD/MM/YYYY"),

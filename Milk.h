@@ -4,10 +4,6 @@
 #include "Product.h"
 #include "ProductFood.h"
 
-#include <string>
-
-using namespace std;
-
 class Milk : public ProductFood {
 private:
     int fat;

@@ -1,7 +1,12 @@
 #ifndef CURSOVAYA_PRODUCT_H
 #define CURSOVAYA_PRODUCT_H
 
+#include <iostream>
 #include <string>
+#include <vector>
+#include <stdexcept>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -22,7 +27,6 @@ public:
     int getPrice() const {return price;}
 
     virtual string Info() const;
-
 };
 
 

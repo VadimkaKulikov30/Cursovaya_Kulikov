@@ -1,11 +1,5 @@
 #include "Shelf.h"
 
-#include <iostream>
-#include <algorithm>
-#include <stdexcept>
-
-using namespace std;
-
 Shelf::Shelf() : capacity(5) {}
 
 int Shelf::convertDate(const string& date){
@@ -19,15 +13,15 @@ void Shelf::dateComparison(const string &ProduceDate, const string &ShelfLife) {
     int produceDate = convertDate(ProduceDate);
     int shelfLife = convertDate(ShelfLife);
     if(produceDate > shelfLife) {
-        throw invalid_argument("You entered a production date less than the shelf life. This can't be");
+        throw invalid_argument(" You entered a production date less than the shelf life. This can't be");
     }
 }
 
 void Shelf::addProductFood(const ProductFood* product, int count) {
     if(count < 0) {
-        throw invalid_argument("You have entered a amount of products less than 0. This cannot be.");
+        throw invalid_argument(" You have entered a amount of products less than 0. This cannot be.");
     } else if (count > getCapacity()){
-        throw invalid_argument("Initially, there is less space on the shelf than you wanted to add.");
+        throw invalid_argument(" Initially, there is less space on the shelf than you wanted to add.");
     } else {
         while (count > 0) {
             vecAmountProduct.push_back(product); count--; capacity--;
@@ -50,18 +44,21 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
     }
 }
 
-//Sorting products on the shelf.
-bool sortComparator(const ProductFood * productFood1, const ProductFood * productFood2){
-    return (productFood1->getPrice() < productFood2->getPrice());
+//Sorting products by price.
+bool sortComparatorPriceAscending(const ProductFood * productFirst, const ProductFood * productSecond){return (productFirst->getPrice() < productSecond->getPrice());}
+bool sortComparatorPriceDescending(const ProductFood * productFirst, const ProductFood * productSecond) {return (productFirst->getPrice() > productSecond->getPrice());}
+
+void Shelf::sortProductPriceAscending() {
+    sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceAscending);
 }
 
-void Shelf::sortProductFood() {
-    sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparator);
+void Shelf::sortProductPriceDescending() {
+    sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceDescending);
 }
 
 //Buying products.
 const ProductFood* Shelf::buyProduct(const string &name) {
-    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end(); product++){
+    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
         const ProductFood * productFood = *product;
         if(productFood->getName() == name){
             vecAmountProduct.erase(product);
@@ -69,15 +66,11 @@ const ProductFood* Shelf::buyProduct(const string &name) {
             capacity++;
             return productFood;
         }
+        else {
+            product++;
+        }
     }
     return nullptr;
-}
-
-//Printing products on the shelf.
-void Shelf::printProductFood() {
-    for(auto i : vecAmountProduct){
-        cout << i->Info() << endl;
-    }
 }
 
 //Checking product for integrity.
@@ -98,6 +91,13 @@ const ProductFood* Shelf::checkIntegrity(const string &name) {
             }
         }
     return nullptr;
+}
+
+//Printing products on the shelf.
+void Shelf::printProductFood() {
+    for(auto product : vecAmountProduct){
+        cout << product->Info() << endl;
+    }
 }
 
 

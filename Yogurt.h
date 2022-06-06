@@ -1,7 +1,6 @@
 #ifndef CURSOVAYA_YOGURT_H
 #define CURSOVAYA_YOGURT_H
 
-#include "Product.h"
 #include "ProductFood.h"
 
 class Yogurt : public ProductFood{
@@ -23,7 +22,6 @@ public:
     string getInside() const {return inside;}
 
     string Info() const override;
-
 };
 
 

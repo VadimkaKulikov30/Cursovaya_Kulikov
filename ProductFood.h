@@ -3,8 +3,6 @@
 
 #include "Product.h"
 
-using namespace std;
-
 class ProductFood : public Product {
 protected:
     string shelfLife;
