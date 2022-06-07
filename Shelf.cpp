@@ -31,15 +31,19 @@ void Shelf::addProductFood(const ProductFood* product, int count) {
 
 //Checking the product for shelf life.
 void Shelf::loseShelfLifeProductFood(const string& date) {
-    int todayDate = convertDate(date);
-    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
-        const ProductFood * productFood = *product;
-        int shelfDate = convertDate(productFood->getShelfLife());
-        if (todayDate > shelfDate){
-            product = vecAmountProduct.erase(product); capacity++;
-        }
-        else {
-            product++;
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf." << endl;
+    } else {
+        int todayDate = convertDate(date);
+        for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
+            const ProductFood *productFood = *product;
+            int shelfDate = convertDate(productFood->getShelfLife());
+            if (todayDate > shelfDate) {
+                product = vecAmountProduct.erase(product);
+                capacity++;
+            } else {
+                product++;
+            }
         }
     }
 }
@@ -49,25 +53,54 @@ bool sortComparatorPriceAscending(const ProductFood * productFirst, const Produc
 bool sortComparatorPriceDescending(const ProductFood * productFirst, const ProductFood * productSecond) {return (productFirst->getPrice() > productSecond->getPrice());}
 
 void Shelf::sortProductPriceAscending() {
-    sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceAscending);
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf.\n"
+                " You can't sort the product." << endl;
+    } else {
+        sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceAscending);
+    }
 }
 
 void Shelf::sortProductPriceDescending() {
-    sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceDescending);
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf.\n"
+                " You can't sort the product." << endl;
+    } else {
+        sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceDescending);
+    }
 }
 
-//Buying products.
+//Buying a product by name.
 const ProductFood* Shelf::buyProduct(const string &name) {
-    for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
-        const ProductFood * productFood = *product;
-        if(productFood->getName() == name){
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf." << endl;
+    } else {
+        for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
+            const ProductFood *productFood = *product;
+            if (productFood->getName() == name) {
+                vecAmountProduct.erase(product);
+                sumPrice(productFood->getPrice());
+                capacity++;
+                break;
+                //return productFood;
+            } else {
+                product++;
+            }
+        }
+    }
+    return nullptr;
+}
+
+//Buying of all products.
+const ProductFood* Shelf::buyAllProduct() {
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf." << endl;
+    } else {
+        for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
+            const ProductFood *productFood = *product;
             vecAmountProduct.erase(product);
             sumPrice(productFood->getPrice());
             capacity++;
-            return productFood;
-        }
-        else {
-            product++;
         }
     }
     return nullptr;
@@ -75,6 +108,9 @@ const ProductFood* Shelf::buyProduct(const string &name) {
 
 //Checking product for integrity.
 const ProductFood* Shelf::checkIntegrity(const string &name) {
+    if(vecAmountProduct.empty()) {
+        cout << " There are no products on the shelf." << endl;
+    } else {
     random_device rd;
     default_random_engine generator(rd());
     for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
@@ -90,13 +126,19 @@ const ProductFood* Shelf::checkIntegrity(const string &name) {
                 product++;
             }
         }
+        cout << " You checked " << name <<  " for integrity.\n";
+    }
     return nullptr;
 }
 
 //Printing products on the shelf.
 void Shelf::printProductFood() {
-    for(auto product : vecAmountProduct){
-        cout << product->Info() << endl;
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf." << endl;
+    } else {
+        for(auto product : vecAmountProduct){
+            cout << product->Info() << endl;
+        }
     }
 }
 

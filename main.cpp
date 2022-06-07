@@ -169,9 +169,29 @@ int main() {
                     break;
                 case 6:
                     cout << "In this subsection, you can buy a product that is on the shelf\n";
-                    cout << "Enter product name:\n"; cin >> name;
-                    shelf.buyProduct(name);
-                    cout << " You sold " << name << ".\n";
+                    do {
+                        cout << "You can buy a product by name by pressing - 1\n"
+                                "You can buy all products at once by pressing - 2\n"
+                                "You can exit by pressing - 3\n"
+                                "\nEnter your choice:\n"; cin >> selection;
+                                switch(selection){
+                                    case 1:
+                                        cout << "Enter product name:\n"; cin >> name;
+                                        shelf.buyProduct(name);
+                                        cout << " You bought " << name << ".\n";
+                                        break;
+                                    case 2:
+                                        shelf.buyAllProduct();
+                                        cout << " You bought all products.\n";
+                                        break;
+                                    case 3:
+                                        cout << " You left case 6\n";
+                                        ex = true;
+                                        break;
+                                    default:
+                                        cout << "\n";
+                                  }
+                      } while(!ex);
                     break;
                 case 7:
                     cout << " You have sold products worth " << shelf.getAmountMoney() << " $\n";
@@ -180,7 +200,6 @@ int main() {
                     cout << "In this subsection you can check the products for integrity.\n";
                     cout << "Enter product name:\n"; cin >> name;
                     shelf.checkIntegrity(name);
-                    cout << " You checked " << name <<  " for integrity.\n";
                     break;
                 case 9:
                     cout << " Products on the shelf:\n";

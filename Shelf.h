@@ -1,11 +1,7 @@
 #ifndef CURSOVAYA_SHELF_H
 #define CURSOVAYA_SHELF_H
 
-#include "Product.h"
 #include "ProductFood.h"
-
-#include <vector>
-#include <random>
 
 class Shelf {
 private:
@@ -34,6 +30,7 @@ public:
     void dateComparison(const string& ProduceDate, const string& ShelfLife);
 
     const ProductFood* buyProduct(const string& name);
+    const ProductFood* buyAllProduct();
     const ProductFood* checkIntegrity(const string& name);
 };
 

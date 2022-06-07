@@ -6,6 +6,7 @@
 #include <vector>
 #include <stdexcept>
 #include <string>
+#include <random>
 #include <algorithm>
 
 using namespace std;
