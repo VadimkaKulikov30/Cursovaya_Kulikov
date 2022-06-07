@@ -6,6 +6,7 @@
 class Shelf {
 private:
     int capacity;
+    int damage = 0;
     int amountMoney = 0;
     vector<const ProductFood*> vecAmountProduct;
 public:
@@ -13,8 +14,10 @@ public:
     Shelf();
 
     int convertDate(const string& date);
+
     int getCapacity() const {return capacity;}
     int getAmountMoney() const {return amountMoney;}
+    int getDamageProduct() const {return damage;}
 
     //Revenue of products sold.
     void sumPrice(int gain) {amountMoney += gain;}
@@ -22,16 +25,17 @@ public:
     void setCapacityIncrease(int gain) {capacity += gain;}
     void setCapacityReduce(int gain) {capacity -= gain;}
 
+    void dateComparison(const string& ProduceDate, const string& ShelfLife);
+    void addProductFood(const ProductFood* product, int quantity);
     void loseShelfLifeProductFood(const string& date);
-    void printProductFood();
     void sortProductPriceAscending();
     void sortProductPriceDescending();
-    void addProductFood(const ProductFood* product, int quantity);
-    void dateComparison(const string& ProduceDate, const string& ShelfLife);
+    void buyProduct(const string& name);
+    void buyAllProduct();
+    void checkIntegrity(const string& name);
+    void checkAllIntegrity();
+    void printProductFood();
 
-    const ProductFood* buyProduct(const string& name);
-    const ProductFood* buyAllProduct();
-    const ProductFood* checkIntegrity(const string& name);
 };
 
 

@@ -40,10 +40,16 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
             int shelfDate = convertDate(productFood->getShelfLife());
             if (todayDate > shelfDate) {
                 product = vecAmountProduct.erase(product);
-                capacity++;
+                capacity++; damage++;
             } else {
                 product++;
             }
+        }
+        if(damage != 0){
+            cout << " Expired products - " << getDamageProduct() << "\n These products were disposed of off the shelf.\n";
+            damage = 0;
+        } else {
+            cout << " No expired products.\n";
         }
     }
 }
@@ -71,28 +77,26 @@ void Shelf::sortProductPriceDescending() {
 }
 
 //Buying a product by name.
-const ProductFood* Shelf::buyProduct(const string &name) {
+void Shelf::buyProduct(const string &name) {
     if(vecAmountProduct.empty()){
         cout << " There are no products on the shelf." << endl;
     } else {
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
-            const ProductFood *productFood = *product;
+            const ProductFood * productFood = *product;
             if (productFood->getName() == name) {
                 vecAmountProduct.erase(product);
                 sumPrice(productFood->getPrice());
                 capacity++;
                 break;
-                //return productFood;
             } else {
                 product++;
             }
         }
     }
-    return nullptr;
 }
 
 //Buying of all products.
-const ProductFood* Shelf::buyAllProduct() {
+void Shelf::buyAllProduct() {
     if(vecAmountProduct.empty()){
         cout << " There are no products on the shelf." << endl;
     } else {
@@ -103,16 +107,15 @@ const ProductFood* Shelf::buyAllProduct() {
             capacity++;
         }
     }
-    return nullptr;
 }
 
 //Checking product for integrity.
-const ProductFood* Shelf::checkIntegrity(const string &name) {
+void Shelf::checkIntegrity(const string &name) {
     if(vecAmountProduct.empty()) {
         cout << " There are no products on the shelf." << endl;
     } else {
     random_device rd;
-    default_random_engine generator(rd());
+    mt19937 generator(rd());
     for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
         const ProductFood * productFood = *product;
             if(productFood->getName() == name){
@@ -120,17 +123,43 @@ const ProductFood* Shelf::checkIntegrity(const string &name) {
                 if(distribution(generator)){
                     product++;
                 } else {
-                    vecAmountProduct.erase(product); capacity++;
+                    vecAmountProduct.erase(product); capacity++; damage++;
                 }
             } else {
                 product++;
             }
         }
-        cout << " You checked " << name <<  " for integrity.\n";
+        if(damage != 0){
+            cout << " You checked " << name <<  " for integrity. " << "Damaged products - " << getDamageProduct() << ".\n";
+            damage = 0;
+        } else {
+            cout << " No damaged products.\n";
+        }
     }
-    return nullptr;
 }
 
+void Shelf::checkAllIntegrity() {
+    if(vecAmountProduct.empty()){
+        cout << " There are no products on the shelf." << endl;
+    } else {
+        random_device rd;
+        mt19937 generator(rd());
+        for(auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();){
+            bernoulli_distribution distribution(0.8);
+            if(distribution(generator)){
+                product++;
+            } else {
+                vecAmountProduct.erase(product); capacity++; damage++;
+            }
+        }
+        if(damage != 0){
+            cout << " You checked products for integrity. " << "Damaged products - " << getDamageProduct() << ".\n";
+            damage = 0;
+        } else {
+            cout << " No damaged products.\n";
+        }
+    }
+}
 //Printing products on the shelf.
 void Shelf::printProductFood() {
     if(vecAmountProduct.empty()){

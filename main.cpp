@@ -45,22 +45,22 @@ int main() {
                 case 1:
                         try {
                             cout << "You chose yogurt, let's add it to the shelf.\n";
-                            cout << "Enter the name of the yogurt:\n"; cin >> name;
+                            cout << "Enter the name of the yogurt:\n"; cin.ignore(); getline(cin, name);
                             cout << "Production date input format example: DD/MM/YYYY.\n";
-                            cout << "Enter production date:\n"; cin >> produceDate;
+                            cout << "Enter production date:\n"; cin.ignore(); getline(cin, produceDate);
                             cout << "Weight is calculated in grams and cannot be less than 0.\n";
                             cout << "Enter weight:\n"; cin >> weight;
                             cout << "The price is calculated in dollars and cannot be less than 0.\n";
                             cout << "Enter price:\n"; cin >> price;
                             cout << "Shelf life input format example: DD/MM/YYYY.\n";
-                            cout << "Enter shelf life:\n"; cin >> shelfLife;
+                            cout << "Enter shelf life:\n"; cin.ignore(); getline(cin, shelfLife);
                             cout << "Calories are counted in kcal and cannot be less than 0.\n";
                             cout << "Enter amount calories:\n"; cin >> amountCalories;
                             cout << "The fat content of yogurt is not less than 0% and not more than 10%.\n";
                             cout << "Enter fat:\n"; cin >> fat;
                             cout << "The inside of yogurt can be for example pineapple, mango, apple and other fruits.\n";
-                            cout << "Enter the inside of the yogurt:\n"; cin >> inside;
-                            cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
+                            cout << "Enter the inside of the yogurt:\n"; cin.ignore(); getline(cin, inside);
+                            cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                             cout << "Enter amount of product:\n"; cin >> amount;
 
                             yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
@@ -78,23 +78,23 @@ int main() {
                 case 2:
                         try {
                             cout << "You chose milk, let's add it to the shelf.\n";
-                            cout << "Enter the name of the milk:\n"; cin >> name;
+                            cout << "Enter the name of the milk:\n"; cin.ignore(); getline(cin, name);
                             cout << "Production date input format example: DD/MM/YYYY.\n";
-                            cout << "Enter production date:\n"; cin >> produceDate;
+                            cout << "Enter production date:\n"; cin.ignore(); getline(cin, produceDate);
                             cout << "Weight is calculated in grams and cannot be less than 0.\n";
                             cout << "Enter weight:\n"; cin >> weight;
                             cout << "The price is calculated in dollars and cannot be less than 0.\n";
                             cout << "Enter price:\n"; cin >> price;
                             cout << "Shelf life input format example: DD/MM/YYYY.\n";
-                            cout << "Enter shelf life:\n"; cin >> shelfLife;
+                            cout << "Enter shelf life:\n"; cin.ignore(); getline(cin, shelfLife);
                             cout << "Calories are counted in kcal and cannot be less than 0.\n";
                             cout << "Enter amount calories:\n"; cin >> amountCalories;
                             cout << "The fat content of yogurt is not less than 0% and not more than 14%.\n";
                             cout << "Enter fat:\n"; cin >> fat;
                             cout << "Milk is stored in a package.\n"
                                     "For example cardboard, bottle, glass and others.\n";
-                            cout << "Enter package type:\n"; cin >> packageType;
-                            cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
+                            cout << "Enter package type:\n"; cin.ignore(); getline(cin, packageType);
+                            cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                             cout << "Enter amount of product\n"; cin >> amount;
 
                             milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
@@ -108,25 +108,25 @@ int main() {
                 case 3:
                         try {
                             cout << "You chose sweet, let's add it to the shelf.\n";
-                            cout << "Enter the name of the sweet:\n"; cin >> name;
+                            cout << "Enter the name of the sweet:\n"; cin.ignore(); getline(cin, name);
                             cout << "Production date input format example: DD/MM/YYYY.\n";
-                            cout << "Enter production date:\n"; cin >> produceDate;
+                            cout << "Enter production date:\n"; cin.ignore(); getline(cin, produceDate);
                             cout << "Weight is calculated in grams and cannot be less than 0.\n";
                             cout << "Enter weight:\n"; cin >> weight;
                             cout << "The price is calculated in dollars and cannot be less than 0.\n";
-                            cout << "Enter price\n"; cin >> price;
+                            cout << "Enter price:\n"; cin >> price;
                             cout << "Shelf life input format example: DD/MM/YYYY.\n";
-                            cout << "Enter shelf life:\n"; cin >> shelfLife;
+                            cout << "Enter shelf life:\n"; cin.ignore(); getline(cin, shelfLife);
                             cout << "Calories are counted in kcal and cannot be less than 0.\n";
                             cout << "Enter amount calories:\n"; cin >> amountCalories;
                             cout << "You can choose different type of sweets.\n"
                                     "For example chocolate, candy, marshmallows, waffles and others.\n";
-                            cout << "Enter sweet type:\n"; cin >> sweetType;
+                            cout << "Enter sweet type:\n"; cin.ignore(); getline(cin, sweetType);
                             cout << "Sweet is stored in a package.\n"
-                                "For example cardboard, foil, box and others\n";
-                            cout << "Enter package type:\n"; cin >> packageType;
-                            cout << "Seats on the shelf now: " << shelf.getCapacity() << "\n";
-                            cout << "Enter amount of product\n"; cin >> amount;
+                                "For example cardboard, foil, box and others.\n";
+                            cout << "Enter package type:\n"; cin.ignore(); getline(cin, packageType);
+                            cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
+                            cout << "Enter amount of product:\n"; cin >> amount;
 
                             sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                             shelf.dateComparison(produceDate, shelfLife);
@@ -138,18 +138,18 @@ int main() {
                     break;
                 case 4:
                     cout << "Check the shelf life of the products added to the shelf.\n";
-                    cout << "Enter today date:\n"; cin >> todayDate;
+                    cout << "Enter today date:\n"; cin.ignore(); getline(cin, todayDate);
                     shelf.loseShelfLifeProductFood(todayDate);
                     break;
                 case 5:
                     cout << "This sub-item sorts the products on the shelf.\n"
-                            "You can sort products by price\n"; cout << endl;
+                            "You can sort products by price.\n"; cout << endl;
                     do {
                         cout << "You can sort products in ascending order by pressing - 1.\n"
                                 "You can sort products in descending order by pressing - 2.\n"
                                 "You can exit by pressing - 3.\n"
                                 "\nEnter your choice:\n"; cin >> selection;
-                        switch (selection) {
+                        switch(selection) {
                             case 1:
                                 shelf.sortProductPriceAscending();
                                 cout << " Products sorted.\n";
@@ -168,29 +168,29 @@ int main() {
                     } while(!ex);
                     break;
                 case 6:
-                    cout << "In this subsection, you can buy a product that is on the shelf\n";
+                    cout << "In this subsection, you can buy a product that is on the shelf.\n";
                     do {
-                        cout << "You can buy a product by name by pressing - 1\n"
-                                "You can buy all products at once by pressing - 2\n"
-                                "You can exit by pressing - 3\n"
+                        cout << "You can buy a product by name by pressing - 1.\n"
+                                "You can buy all products at once by pressing - 2.\n"
+                                "You can exit by pressing - 3.\n"
                                 "\nEnter your choice:\n"; cin >> selection;
-                                switch(selection){
-                                    case 1:
-                                        cout << "Enter product name:\n"; cin >> name;
-                                        shelf.buyProduct(name);
-                                        cout << " You bought " << name << ".\n";
-                                        break;
-                                    case 2:
-                                        shelf.buyAllProduct();
-                                        cout << " You bought all products.\n";
-                                        break;
-                                    case 3:
-                                        cout << " You left case 6\n";
-                                        ex = true;
-                                        break;
-                                    default:
-                                        cout << "\n";
-                                  }
+                        switch(selection){
+                             case 1:
+                                 cout << "Enter product name:\n"; cin.ignore(); getline(cin, name);
+                                 shelf.buyProduct(name);
+                                 cout << " You bought " << name << ".\n";
+                                 break;
+                             case 2:
+                                 shelf.buyAllProduct();
+                                 cout << " You bought all products.\n";
+                                 break;
+                             case 3:
+                                 cout << " You left case 6.\n";
+                                 ex = true;
+                                 break;
+                             default:
+                                 cout << "\n";
+                         }
                       } while(!ex);
                     break;
                 case 7:
@@ -198,8 +198,27 @@ int main() {
                     break;
                 case 8:
                     cout << "In this subsection you can check the products for integrity.\n";
-                    cout << "Enter product name:\n"; cin >> name;
-                    shelf.checkIntegrity(name);
+                    do {
+                        cout << "You can check product for integrity by name by pressing - 1.\n"
+                                "You can check all products for integrity at once by pressing - 2.\n"
+                                "You can exit by pressing - 3.\n"
+                                "\nEnter your choice:\n"; cin >> selection;
+                        switch(selection){
+                            case 1:
+                                cout << "Enter product name:\n"; cin.ignore(); getline(cin, name);
+                                shelf.checkIntegrity(name);
+                                break;
+                            case 2:
+                                shelf.checkAllIntegrity();
+                                break;
+                            case 3:
+                                cout << " You left case 8.\n";
+                                ex = true;
+                                break;
+                            default:
+                                cout << "\n";
+                         }
+                    } while(!ex);
                     break;
                 case 9:
                     cout << " Products on the shelf:\n";
@@ -222,7 +241,7 @@ int main() {
                                 shelf.setCapacityReduce(gain);
                                 break;
                             case 3:
-                                cout << " Seats on the shelf now: " << shelf.getCapacity() << "\n";
+                                cout << " Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                                 break;
                             case 4:
                                 cout << " You left case 10.\n";
