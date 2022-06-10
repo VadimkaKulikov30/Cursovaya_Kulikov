@@ -13,7 +13,7 @@ void Shelf::dateComparison(const string &ProduceDate, const string &ShelfLife) {
     int produceDate = convertDate(ProduceDate);
     int shelfLife = convertDate(ShelfLife);
     if(produceDate > shelfLife) {
-        throw invalid_argument(" You entered a production date less than the shelf life. This can't be");
+        throw invalid_argument(" You entered a production date less than the shelf life. This can't be.");
     }
 }
 
@@ -60,26 +60,28 @@ bool sortComparatorPriceDescending(const ProductFood * productFirst, const Produ
 
 void Shelf::sortProductPriceAscending() {
     if(vecAmountProduct.empty()){
-        cout << " There are no products on the shelf.\n"
-                " You can't sort the product." << endl;
+        cout << "There are no products on the shelf.\n"
+                "You can't sort the product." << "\n";
     } else {
         sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceAscending);
+        cout << "Products sorted.\n";
     }
 }
 
 void Shelf::sortProductPriceDescending() {
     if(vecAmountProduct.empty()){
-        cout << " There are no products on the shelf.\n"
-                " You can't sort the product." << endl;
+        cout << "There are no products on the shelf.\n"
+                "You can't sort the product." << "\n";
     } else {
         sort(vecAmountProduct.begin(), vecAmountProduct.end(), sortComparatorPriceDescending);
+        cout << "Products sorted.\n";
     }
 }
 
 //Buying a product by name.
 void Shelf::buyProduct(const string &name) {
     if(vecAmountProduct.empty()){
-        cout << " There are no products on the shelf." << endl;
+        cout << "There are no products on the shelf." << "\n";
     } else {
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood * productFood = *product;
@@ -92,27 +94,29 @@ void Shelf::buyProduct(const string &name) {
                 product++;
             }
         }
+        cout << "You bought " << name << ".\n";
     }
 }
 
 //Buying of all products.
 void Shelf::buyAllProduct() {
     if(vecAmountProduct.empty()){
-        cout << " There are no products on the shelf." << endl;
+        cout << "There are no products on the shelf." << "\n";
     } else {
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood *productFood = *product;
             vecAmountProduct.erase(product);
             sumPrice(productFood->getPrice());
-            capacity++;
+            capacity++; damage++;
         }
+        cout << "You bought all products.\n";
     }
 }
 
 //Checking product for integrity.
 void Shelf::checkIntegrity(const string &name) {
     if(vecAmountProduct.empty()) {
-        cout << " There are no products on the shelf." << endl;
+        cout << "There are no products on the shelf." << endl;
     } else {
     random_device rd;
     mt19937 generator(rd());
@@ -130,17 +134,17 @@ void Shelf::checkIntegrity(const string &name) {
             }
         }
         if(damage != 0){
-            cout << " You checked " << name <<  " for integrity. " << "Damaged products - " << getDamageProduct() << ".\n";
+            cout << "You checked " << name <<  " for integrity. " << "Damaged products - " << getDamageProduct() << ".\n";
             damage = 0;
         } else {
-            cout << " No damaged products.\n";
+            cout << "No damaged products.\n";
         }
     }
 }
 
 void Shelf::checkAllIntegrity() {
     if(vecAmountProduct.empty()){
-        cout << " There are no products on the shelf." << endl;
+        cout << "There are no products on the shelf." << endl;
     } else {
         random_device rd;
         mt19937 generator(rd());
@@ -153,10 +157,10 @@ void Shelf::checkAllIntegrity() {
             }
         }
         if(damage != 0){
-            cout << " You checked products for integrity. " << "Damaged products - " << getDamageProduct() << ".\n";
+            cout << "You checked products for integrity. " << "Damaged products - " << getDamageProduct() << ".\n";
             damage = 0;
         } else {
-            cout << " No damaged products.\n";
+            cout << "No damaged products.\n";
         }
     }
 }
@@ -166,7 +170,7 @@ void Shelf::printProductFood() {
         cout << " There are no products on the shelf." << endl;
     } else {
         for(auto product : vecAmountProduct){
-            cout << product->Info() << endl;
+            cout << product->Info() << "\n";
         }
     }
 }
