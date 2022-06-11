@@ -4,7 +4,7 @@
 #include "Product.h"
 
 class ProductFood : public Product {
-protected:
+private:
     string shelfLife;
     int amountCalories;
 public:

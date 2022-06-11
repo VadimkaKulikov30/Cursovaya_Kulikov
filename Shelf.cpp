@@ -107,7 +107,7 @@ void Shelf::buyAllProduct() {
             const ProductFood *productFood = *product;
             vecAmountProduct.erase(product);
             sumPrice(productFood->getPrice());
-            capacity++; damage++;
+            capacity++;
         }
         cout << "You bought all products.\n";
     }
