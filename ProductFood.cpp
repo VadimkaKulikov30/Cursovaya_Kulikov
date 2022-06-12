@@ -22,3 +22,4 @@ string ProductFood::Info() const {
 
     return out;
 }
+

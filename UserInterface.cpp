@@ -9,8 +9,8 @@ void UserInterface::SystemMenu() {
     Sweet *sweet;
     Shelf shelf;
 
-    cout << "|=========================================|\n"
-            "|       WELCOME TO THE PRODUCT SHOP       |\n";
+        cout << "|=========================================|\n"
+                "|       WELCOME TO THE PRODUCT SHOP       |\n";
     do {
         cout << "|=========================================|\n"
                 "| Choose product:                         |\n"
@@ -58,8 +58,8 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
                     shelf.dateComparison(produceDate, shelfLife);
+                    yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
                     shelf.addProductFood(yogurt, amount);
                     if(amount > 1){
                         cout << " " << amount << " yogurts have been added to the shelf.\n";
@@ -92,8 +92,8 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product\n"; cin >> amount;
 
-                    milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
                     shelf.dateComparison(produceDate, shelfLife);
+                    milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
                     shelf.addProductFood(milk, amount);
                     cout << " " << amount << " milk " << packageType << " have been added to the shelf.\n";
                 } catch (exception &ex) {
@@ -123,8 +123,8 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                     shelf.dateComparison(produceDate, shelfLife);
+                    sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                     shelf.addProductFood(sweet, amount);
                     cout << " " << amount << " " << sweetType << " in a " << packageType << " added to the shelf.\n";
                 } catch (exception& ex){

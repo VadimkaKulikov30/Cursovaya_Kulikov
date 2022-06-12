@@ -21,6 +21,7 @@ public:
             string produceDate,
             int weight,
             int price);
+    virtual ~Product() {}
 
     string getName() const {return name;}
     string getProduceDate() const {return produceDate;}

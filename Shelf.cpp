@@ -24,7 +24,7 @@ void Shelf::addProductFood(const ProductFood* product, int count) {
         throw invalid_argument(" Initially, there is less space on the shelf than you wanted to add.");
     } else {
         while (count > 0) {
-            vecAmountProduct.push_back(product); count--; capacity--;
+            vecAmountProduct.push_back(product); count--; capacity--; 
         }
     }
 }
@@ -39,6 +39,7 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
             const ProductFood *productFood = *product;
             int shelfDate = convertDate(productFood->getShelfLife());
             if (todayDate > shelfDate) {
+                delete * product;
                 product = vecAmountProduct.erase(product);
                 capacity++; damage++;
             } else {
@@ -86,6 +87,7 @@ void Shelf::buyProduct(const string &name) {
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood * productFood = *product;
             if (productFood->getName() == name) {
+                delete * product;
                 vecAmountProduct.erase(product);
                 sumPrice(productFood->getPrice());
                 capacity++;
@@ -105,6 +107,7 @@ void Shelf::buyAllProduct() {
     } else {
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood *productFood = *product;
+            delete * product;
             vecAmountProduct.erase(product);
             sumPrice(productFood->getPrice());
             capacity++;
@@ -127,6 +130,7 @@ void Shelf::checkIntegrity(const string &name) {
                 if(distribution(generator)){
                     product++;
                 } else {
+                    delete * product;
                     vecAmountProduct.erase(product); capacity++; damage++;
                 }
             } else {
@@ -153,6 +157,7 @@ void Shelf::checkAllIntegrity() {
             if(distribution(generator)){
                 product++;
             } else {
+                delete * product;
                 vecAmountProduct.erase(product); capacity++; damage++;
             }
         }
@@ -164,6 +169,7 @@ void Shelf::checkAllIntegrity() {
         }
     }
 }
+
 //Printing products on the shelf.
 void Shelf::printProductFood() {
     if(vecAmountProduct.empty()){
