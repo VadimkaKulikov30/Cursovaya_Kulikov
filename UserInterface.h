@@ -3,6 +3,7 @@
 #define MAIN_CPP_USERINTERFACE_H
 
 #include "Product.h"
+#include "ProductFood.h"
 #include "Yogurt.h"
 #include "Milk.h"
 #include "Sweet.h"

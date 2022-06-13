@@ -16,6 +16,9 @@ public:
                 string shelfLife,
                 int amountCalories);
 
+    int convertDate(const string& date);
+    void dateComparison(const string& ProduceDate, const string& ShelfLife);
+    void checkDate(const string& date);
     string getShelfLife() const {return shelfLife;}
     int getAmountCalories() const {return amountCalories;}
 

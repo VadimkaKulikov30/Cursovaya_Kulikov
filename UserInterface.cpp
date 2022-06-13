@@ -7,7 +7,9 @@ void UserInterface::SystemMenu() {
     Yogurt *yogurt;
     Milk *milk;
     Sweet *sweet;
+    ProductFood productFood;
     Shelf shelf;
+
 
         cout << "|=========================================|\n"
                 "|       WELCOME TO THE PRODUCT SHOP       |\n";
@@ -58,7 +60,8 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    shelf.dateComparison(produceDate, shelfLife);
+                    productFood.dateComparison(produceDate, shelfLife);
+                    productFood.checkDate(shelfLife);
                     yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
                     shelf.addProductFood(yogurt, amount);
                     if(amount > 1){
@@ -92,7 +95,8 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product\n"; cin >> amount;
 
-                    shelf.dateComparison(produceDate, shelfLife);
+                    productFood.dateComparison(produceDate, shelfLife);
+                    productFood.checkDate(shelfLife);
                     milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
                     shelf.addProductFood(milk, amount);
                     cout << " " << amount << " milk " << packageType << " have been added to the shelf.\n";
@@ -123,7 +127,8 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    shelf.dateComparison(produceDate, shelfLife);
+                    productFood.dateComparison(produceDate, shelfLife);
+                    productFood.checkDate(shelfLife);
                     sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                     shelf.addProductFood(sweet, amount);
                     cout << " " << amount << " " << sweetType << " in a " << packageType << " added to the shelf.\n";

@@ -2,21 +2,6 @@
 
 Shelf::Shelf() : capacity(5) {}
 
-int Shelf::convertDate(const string& date){
-    int day, month, year;
-    sscanf(date.c_str(), "%d/%d/%d", &day, &month, &year);
-    int convertDate = day + month * 100 + year * 10000;
-    return convertDate;
-}
-
-void Shelf::dateComparison(const string &ProduceDate, const string &ShelfLife) {
-    int produceDate = convertDate(ProduceDate);
-    int shelfLife = convertDate(ShelfLife);
-    if(produceDate > shelfLife) {
-        throw invalid_argument(" You entered a production date less than the shelf life. This can't be.");
-    }
-}
-
 void Shelf::addProductFood(const ProductFood* product, int count) {
     if(count < 0) {
         throw invalid_argument(" You have entered a amount of products less than 0. This cannot be.");
@@ -34,10 +19,10 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
     if(vecAmountProduct.empty()){
         cout << " There are no products on the shelf." << endl;
     } else {
-        int todayDate = convertDate(date);
+        int todayDate = ProductFood::convertDate(date);
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood *productFood = *product;
-            int shelfDate = convertDate(productFood->getShelfLife());
+            int shelfDate = ProductFood::convertDate(productFood->getShelfLife());
             if (todayDate > shelfDate) {
                 delete * product;
                 product = vecAmountProduct.erase(product);

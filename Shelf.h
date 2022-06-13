@@ -3,7 +3,7 @@
 
 #include "ProductFood.h"
 
-class Shelf {
+class Shelf : public ProductFood {
 private:
     int capacity;
     int damage = 0;
@@ -12,8 +12,6 @@ private:
 public:
 
     Shelf();
-
-    int convertDate(const string& date);
 
     int getCapacity() const {return capacity;}
     int getAmountMoney() const {return amountMoney;}
@@ -25,7 +23,6 @@ public:
     void setCapacityIncrease(int gain) {capacity += gain;}
     void setCapacityReduce(int gain) {capacity -= gain;}
 
-    void dateComparison(const string& ProduceDate, const string& ShelfLife);
     void addProductFood(const ProductFood* product, int quantity);
     void loseShelfLifeProductFood(const string& date);
     void sortProductPriceAscending();
