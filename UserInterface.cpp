@@ -3,7 +3,7 @@
 void UserInterface::SystemMenu() {
     int weight, fat, price, amountCalories, amount, gain, selection;
     string name, inside, packageType, produceDate, todayDate, shelfLife, sweetType;
-
+    string CurrentDate = "16/06/2022";
     Yogurt *yogurt;
     Milk *milk;
     Sweet *sweet;
@@ -60,8 +60,10 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    productFood.dateComparison(produceDate, shelfLife);
-                    productFood.checkDate(shelfLife);
+                    if(productFood.isShelfLifeGood(CurrentDate)){
+                        throw invalid_argument("dis");
+                    }
+                    //productFood.isShelfLifeGood(CurrentDate);
                     yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
                     shelf.addProductFood(yogurt, amount);
                     if(amount > 1){
@@ -95,8 +97,7 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product\n"; cin >> amount;
 
-                    productFood.dateComparison(produceDate, shelfLife);
-                    productFood.checkDate(shelfLife);
+                    //productFood.checkDateShelfLife(shelfLife);
                     milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
                     shelf.addProductFood(milk, amount);
                     cout << " " << amount << " milk " << packageType << " have been added to the shelf.\n";
@@ -127,8 +128,7 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    productFood.dateComparison(produceDate, shelfLife);
-                    productFood.checkDate(shelfLife);
+                    //productFood.checkDateShelfLife(shelfLife);
                     sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                     shelf.addProductFood(sweet, amount);
                     cout << " " << amount << " " << sweetType << " in a " << packageType << " added to the shelf.\n";

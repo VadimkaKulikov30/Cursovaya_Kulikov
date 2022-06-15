@@ -13,12 +13,13 @@ public:
                 const string& produceDate,
                 int weight,
                 int price,
-                string shelfLife,
+                const string& shelfLife,
                 int amountCalories);
 
-    int convertDate(const string& date);
-    void dateComparison(const string& ProduceDate, const string& ShelfLife);
-    void checkDate(const string& date);
+    bool isShelfLifeGood(const string& currentDate) const;
+    static int convertDate(const string& date);
+    static void dateComparison(const string& ProduceDate, const string& ShelfLife);
+    //static void checkDateShelfLife(const string& date);
     string getShelfLife() const {return shelfLife;}
     int getAmountCalories() const {return amountCalories;}
 

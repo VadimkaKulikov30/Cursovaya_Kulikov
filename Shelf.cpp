@@ -1,4 +1,6 @@
 #include "Shelf.h"
+#include <set>
+
 
 Shelf::Shelf() : capacity(5) {}
 
@@ -19,18 +21,21 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
     if(vecAmountProduct.empty()){
         cout << " There are no products on the shelf." << endl;
     } else {
-        int todayDate = ProductFood::convertDate(date);
+        set <const ProductFood*> toDelete;
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood *productFood = *product;
-            int shelfDate = ProductFood::convertDate(productFood->getShelfLife());
-            if (todayDate > shelfDate) {
-                delete * product;
+            if (productFood->isShelfLifeGood(date)) {
+                product++;
+            } else {
+                toDelete.insert(productFood);
                 product = vecAmountProduct.erase(product);
                 capacity++; damage++;
-            } else {
-                product++;
             }
         }
+        for(auto productFood : toDelete){
+            delete productFood;
+        }
+
         if(damage != 0){
             cout << " Expired products - " << getDamageProduct() << "\n These products were disposed of off the shelf.\n";
             damage = 0;
@@ -41,7 +46,7 @@ void Shelf::loseShelfLifeProductFood(const string& date) {
 }
 
 //Sorting products by price.
-bool sortComparatorPriceAscending(const ProductFood * productFirst, const ProductFood * productSecond){return (productFirst->getPrice() < productSecond->getPrice());}
+bool sortComparatorPriceAscending(const ProductFood * productFirst, const ProductFood * productSecond) {return (productFirst->getPrice() < productSecond->getPrice());}
 bool sortComparatorPriceDescending(const ProductFood * productFirst, const ProductFood * productSecond) {return (productFirst->getPrice() > productSecond->getPrice());}
 
 void Shelf::sortProductPriceAscending() {
@@ -72,7 +77,6 @@ void Shelf::buyProduct(const string &name) {
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood * productFood = *product;
             if (productFood->getName() == name) {
-                delete * product;
                 vecAmountProduct.erase(product);
                 sumPrice(productFood->getPrice());
                 capacity++;
@@ -81,6 +85,7 @@ void Shelf::buyProduct(const string &name) {
                 product++;
             }
         }
+
         cout << "You bought " << name << ".\n";
     }
 }
@@ -90,12 +95,16 @@ void Shelf::buyAllProduct() {
     if(vecAmountProduct.empty()){
         cout << "There are no products on the shelf." << "\n";
     } else {
+        set <const ProductFood*> toDelete;
         for (auto product = vecAmountProduct.begin(); product != vecAmountProduct.end();) {
             const ProductFood *productFood = *product;
-            delete * product;
-            vecAmountProduct.erase(product);
+            toDelete.insert(productFood);
+            product = vecAmountProduct.erase(product);
             sumPrice(productFood->getPrice());
             capacity++;
+        }
+        for(auto productFood : toDelete){
+            delete productFood;
         }
         cout << "You bought all products.\n";
     }
@@ -115,8 +124,7 @@ void Shelf::checkIntegrity(const string &name) {
                 if(distribution(generator)){
                     product++;
                 } else {
-                    delete * product;
-                    vecAmountProduct.erase(product); capacity++; damage++;
+                    product = vecAmountProduct.erase(product); capacity++; damage++;
                 }
             } else {
                 product++;
@@ -142,8 +150,7 @@ void Shelf::checkAllIntegrity() {
             if(distribution(generator)){
                 product++;
             } else {
-                delete * product;
-                vecAmountProduct.erase(product); capacity++; damage++;
+                product = vecAmountProduct.erase(product); capacity++; damage++;
             }
         }
         if(damage != 0){

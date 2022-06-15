@@ -12,7 +12,7 @@ private:
 public:
 
     Shelf();
-
+    ~Shelf() override {}
     int getCapacity() const {return capacity;}
     int getAmountMoney() const {return amountMoney;}
     int getDamageProduct() const {return damage;}
