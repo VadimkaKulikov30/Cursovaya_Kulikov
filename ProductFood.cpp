@@ -3,6 +3,7 @@
 ProductFood::ProductFood() :
                          shelfLife("DD/MM/YYYY"),
                          amountCalories(500) {}
+
 ProductFood::ProductFood(const string& name,
                          const string& produceDate,
                          int weight,
@@ -31,10 +32,9 @@ void ProductFood::dateComparison(const string &ProduceDate, const string &ShelfL
 }
 
 bool ProductFood::isShelfLifeGood(const string &currentDate) const {
-    int ShelfLife = convertDate(shelfLife);
+    int ShelfLife = convertDate(getShelfLife());
     int CurrentDate = convertDate(currentDate);
     return ShelfLife >= CurrentDate;
-
 }
 
 string ProductFood::Info() const {

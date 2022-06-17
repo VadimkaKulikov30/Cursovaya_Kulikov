@@ -4,6 +4,12 @@
 
 Shelf::Shelf() : capacity(5) {}
 
+Shelf::~Shelf() {
+    for(auto product : vecAmountProduct){
+        delete product;
+    }
+}
+
 void Shelf::addProductFood(const ProductFood* product, int count) {
     if(count < 0) {
         throw invalid_argument(" You have entered a amount of products less than 0. This cannot be.");
