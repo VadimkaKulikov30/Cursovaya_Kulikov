@@ -34,19 +34,8 @@ bool ProductFood::isShelfLifeGood(const string &currentDate) const {
     int ShelfLife = convertDate(shelfLife);
     int CurrentDate = convertDate(currentDate);
     return ShelfLife >= CurrentDate;
-        //if(true){} else throw invalid_argument("dis");
-    //else throw invalid_argument("dis");
-    //return ShelfLife >= CurrentDate;
+
 }
-/*void ProductFood::checkDateShelfLife(const string &date) {
-    time_t dateToday;
-    char arrayTodayDate[12];
-    time(&dateToday);
-    strftime(arrayTodayDate, 12, "%d/%m/%Y", localtime(&dateToday));
-    if (convertDate(date) < convertDate(arrayTodayDate)){
-        throw invalid_argument(" Expiry date less than today date.");
-    }
-}*/
 
 string ProductFood::Info() const {
     string out;

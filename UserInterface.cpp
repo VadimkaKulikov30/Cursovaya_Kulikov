@@ -32,7 +32,8 @@ void UserInterface::SystemMenu() {
                 "|=========================================|\n"
                 "| 10. Info Shelf.                         |\n"
                 "| 11. Exit the program.                   |\n"
-                "|=========================================|\n"
+                "| Today date: "; cout << CurrentDate; cout << "                  |\n";
+        cout << "|=========================================|\n"
                 "| You can choose any of the 11 sub-items  |\n"
                 "|   and follow the prompts. Good luck!    |\n"
                 "|=========================================|\n";
@@ -60,10 +61,6 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    if(productFood.isShelfLifeGood(CurrentDate)){
-                        throw invalid_argument("dis");
-                    }
-                    //productFood.isShelfLifeGood(CurrentDate);
                     yogurt = new Yogurt(name, produceDate, weight, price, shelfLife, amountCalories, fat, inside);
                     shelf.addProductFood(yogurt, amount);
                     if(amount > 1){
@@ -95,9 +92,8 @@ void UserInterface::SystemMenu() {
                             "For example cardboard, bottle, glass and others.\n";
                     cout << "Enter package type:\n"; cin.ignore(); getline(cin, packageType);
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
-                    cout << "Enter amount of product\n"; cin >> amount;
+                    cout << "Enter amount of product:\n"; cin >> amount;
 
-                    //productFood.checkDateShelfLife(shelfLife);
                     milk = new Milk(name, produceDate, weight, price, shelfLife, amountCalories, fat, packageType);
                     shelf.addProductFood(milk, amount);
                     cout << " " << amount << " milk " << packageType << " have been added to the shelf.\n";
@@ -128,7 +124,6 @@ void UserInterface::SystemMenu() {
                     cout << "Seats on the shelf now: " << shelf.getCapacity() << ".\n";
                     cout << "Enter amount of product:\n"; cin >> amount;
 
-                    //productFood.checkDateShelfLife(shelfLife);
                     sweet = new Sweet(name, produceDate, weight, price, shelfLife, amountCalories, sweetType, packageType);
                     shelf.addProductFood(sweet, amount);
                     cout << " " << amount << " " << sweetType << " in a " << packageType << " added to the shelf.\n";
@@ -138,8 +133,7 @@ void UserInterface::SystemMenu() {
                 break;
             case 4:
                 cout << "Check the shelf life of the products added to the shelf.\n";
-                cout << "Enter today date:\n"; cin.ignore(); getline(cin, todayDate);
-                shelf.loseShelfLifeProductFood(todayDate);
+                shelf.loseShelfLifeProductFood(CurrentDate);
                 break;
             case 5:
                 cout << "This sub-item sorts the products on the shelf.\n"

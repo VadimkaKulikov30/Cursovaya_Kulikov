@@ -84,8 +84,8 @@ void Shelf::buyProduct(const string &name) {
             } else {
                 product++;
             }
+            delete * product;
         }
-
         cout << "You bought " << name << ".\n";
     }
 }
